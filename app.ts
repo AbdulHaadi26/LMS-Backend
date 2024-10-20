@@ -1,11 +1,10 @@
 import dotenv from "dotenv";
 import express, { Application } from "express";
 import cors from "cors";
-import { defineRoutes } from "./routes";
-import { responseFormatter, passport } from "./middlewares";
 
 dotenv.config();
 
+import { responseFormatter, passport } from "./middlewares";
 import "./utils/db";
 
 const app: Application = express();
@@ -16,6 +15,7 @@ app.use(cors());
 app.use(passport.initialize());
 app.use(responseFormatter);
 
+import { defineRoutes } from "./routes";
 defineRoutes(app);
 
 app.listen(port, () => {
