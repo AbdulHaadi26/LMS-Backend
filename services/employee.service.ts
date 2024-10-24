@@ -55,6 +55,7 @@ export const getProfile = async (_id: string, tenantId: string) => {
     {
       _id,
       tenantId,
+      isActive: true,
     },
     {
       _id: 1,

@@ -7,6 +7,7 @@ const profile = async (req: Request, res: Response) => {
   try {
     const { _id, tenantId } = req.user as JWTPayloadType;
 
+    //Check tenant active
     const employee = await getProfile(_id, tenantId);
 
     res.success({ profile: employee });
