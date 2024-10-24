@@ -49,3 +49,25 @@ export const getEmployeeByEmail = async (email: string) => {
 
   return employee;
 };
+
+export const getProfile = async (_id: string, tenantId: string) => {
+  const employee = await UserModel.findOne(
+    {
+      _id,
+      tenantId,
+    },
+    {
+      _id: 1,
+      name: 1,
+      email: 1,
+      tenantId: 1,
+      type: 1,
+    }
+  );
+
+  if (!employee?._id) {
+    throw new Error("Employee not found");
+  }
+
+  return employee;
+};

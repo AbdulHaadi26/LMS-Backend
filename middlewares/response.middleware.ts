@@ -16,10 +16,7 @@ export function responseFormatter(
   next: NextFunction
 ): void {
   res.success = (data: any, status: number = ResponseCodes.SUCCESS): void => {
-    res.status(status).json({
-      status,
-      data,
-    });
+    res.status(status).json(data);
   };
 
   res.error = (status: number, error: any): void => {

@@ -1,35 +1,18 @@
 import { Request, Response } from "express";
-import {
-  compareHash,
-  getEmployeeByEmail,
-  getTenantById,
-  signToken,
-} from "../services";
 import { ResponseCodes } from "../utils";
+import { JWTPayloadType } from "../types";
+import { getProfile } from "../services";
 
-const login = async (req: Request, res: Response) => {
+const profile = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { _id, tenantId } = req.user as JWTPayloadType;
 
-    const employee = await getEmployeeByEmail(email);
-    const tenant = await getTenantById(employee.tenantId);
+    const employee = await getProfile(_id, tenantId);
 
-    const isPasswordValid = await compareHash(password, employee.password);
-
-    if (!isPasswordValid) {
-      return res.error(ResponseCodes.UNAUTHORIZED, "Invalid credentials");
-    }
-
-    const token = signToken({
-      _id: employee._id,
-      type: employee.type,
-      tenantId: tenant._id,
-    });
-
-    res.success({ token });
+    res.success({ profile: employee });
   } catch (error) {
     res.error(ResponseCodes.INTERNAL_SERVER_ERROR, error);
   }
 };
 
-export { login };
+export { profile };
