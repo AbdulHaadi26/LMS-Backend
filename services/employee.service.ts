@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { UserTypes } from "../types";
 import { UserModel } from "../models/user.model";
+import { UserTypes } from "../types";
 
 export const createAdminEmployee = async (
   email: string,
@@ -53,8 +53,8 @@ export const getEmployeeByEmail = async (email: string) => {
 export const getProfile = async (_id: string, tenantId: string) => {
   const employee = await UserModel.findOne(
     {
-      _id,
-      tenantId,
+      _id: new mongoose.Types.ObjectId(_id),
+      tenantId: new mongoose.Types.ObjectId(tenantId),
       isActive: true,
     },
     {

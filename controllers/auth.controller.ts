@@ -12,7 +12,7 @@ const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     const employee = await getEmployeeByEmail(email);
-    const tenant = await getTenantById(employee.tenantId);
+    const tenant = await getTenantById(String(employee.tenantId));
 
     const isPasswordValid = await compareHash(password, employee.password);
 
@@ -22,7 +22,7 @@ const login = async (req: Request, res: Response) => {
 
     const token = signToken({
       _id: employee._id,
-      type: employee.type,
+      userType: employee.type,
       tenantId: tenant._id,
     });
 

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import { TenantModel } from "../models/tenant.model";
 
-export const getTenantById = async (_id: object) => {
+export const getTenantById = async (_id: string) => {
   const tenant = await TenantModel.findOne({
-    _id: _id,
+    _id: new mongoose.Types.ObjectId(_id),
     isActive: true,
   });
 
