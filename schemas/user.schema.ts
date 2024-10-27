@@ -14,6 +14,7 @@ interface IUserProps {
   vendorNo?: string;
   designation?: string;
   scale?: string;
+  employeeImage?: object;
   createdAt?: Date;
   updatedAt?: Date;
   type: UserTypes;
@@ -33,6 +34,7 @@ const UserSchema = new Schema<IUserProps>({
   vendorNo: { type: String },
   designation: { type: String },
   scale: { type: String },
+  employeeImage: { type: Schema.Types.ObjectId, ref: "attachments" },
   type: { type: String, enum: Object.values(UserTypes), required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
@@ -40,4 +42,4 @@ const UserSchema = new Schema<IUserProps>({
   isActive: { type: Boolean, default: true },
 });
 
-export { UserSchema, IUserProps };
+export { IUserProps, UserSchema };

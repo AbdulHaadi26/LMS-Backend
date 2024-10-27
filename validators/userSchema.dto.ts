@@ -12,6 +12,7 @@ const UserSchemaValidator = Joi.object({
   contactNo: Joi.string().optional(),
   vendorNo: Joi.string().optional(),
   scale: Joi.string().optional(),
+  employeeImage: Joi.object().optional(),
   type: Joi.string().required(),
   createdAt: Joi.date(),
   updatedAt: Joi.date(),

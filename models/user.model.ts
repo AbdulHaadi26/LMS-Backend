@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
 import { IUserProps, UserSchema } from "../schemas/user.schema";
-import { UserSchemaValidator } from "../validators/userSchema.dto";
 import { hashString } from "../services";
+import { UserSchemaValidator } from "../validators/userSchema.dto";
 
 UserSchema.index({ _id: 1, email: 1, isActive: 1 });
 
@@ -20,4 +19,4 @@ UserSchema.pre("save", async function (next) {
 
 const UserModel = mongoose.model<IUserProps>("users", UserSchema);
 
-export { UserModel, IUserProps };
+export { IUserProps, UserModel };

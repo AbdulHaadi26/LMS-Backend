@@ -35,3 +35,9 @@ export enum DeviceTypes {
   IOS = "IOS",
   WEB = "WEB",
 }
+
+export enum S3PathNames {
+  BASE = "tenant",
+  PROFILE = "/profile",
+  INVOICES = "/invoices",
+}
