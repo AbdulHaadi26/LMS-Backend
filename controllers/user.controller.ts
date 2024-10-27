@@ -7,7 +7,7 @@ const profile = async (req: Request, res: Response) => {
   try {
     const { _id, tenantId } = req.user as JWTPayloadType;
 
-    const [tenant, employee] = await Promise.all([
+    const [employee, tenant] = await Promise.all([
       getProfile(_id, tenantId),
       getTenantById(tenantId),
     ]);
