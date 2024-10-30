@@ -41,3 +41,16 @@ export enum S3PathNames {
   PROFILE = "/profile",
   INVOICES = "/invoices",
 }
+
+export enum InoviceStatuses {
+  UNPAID = "UNPAID",
+  PAID = "PAID",
+  CANCELLED = "CANCELLED",
+  ALL = "ALL",
+}
+
+export enum InvoiceTypes {
+  INCOMING = "INCOMING",
+  OUTGOING = "OUTGOING",
+  ALL = "ALL",
+}
